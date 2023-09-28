@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OceaneGram Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <img id="banner" src="banner.png" />
+
+    <div id="mainContainer">
+        <div class="container">
+            <div id="appDetails" class="details">
+                <h1>Profile App Demo</h1>
+                <iframe src="https://thunkable.site/w/fJ8h8E9GXYfhCzOLJNUPM" title="ProfileApp" height=690
+                    width=400></iframe>
+            </div>
+        </div>
+        <div class="container">
+            <div id="usersDetails" class="details">
+                <h1>Users</h1>
+                <div id="users"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCss05Je-yKMCChEEosOPG8GQCtyWB-5Ro",
+            authDomain: "profileapp-e346d.firebaseapp.com",
+            databaseURL: "https://profileapp-e346d-default-rtdb.firebaseio.com",
+            projectId: "profileapp-e346d",
+            storageBucket: "profileapp-e346d.appspot.com",
+            messagingSenderId: "553044113636",
+            appId: "1:553044113636:web:e6da5f21b2f8a469e1d4f1",
+            measurementId: "G-9GJDDZETPG"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import { getDatabase, ref, get, set, child, update, remove }
+            from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+
+
+        const db = getDatabase();
+
+        var users = document.querySelector("#users");
+
+        function createNewUserDiv(id, name, bio, legend, localisation, image) {
+            const newUserDiv = document.createElement('div');
+
+            newUserDiv.innerHTML = `
+            <div class="user">
+                        <p class="userId">${id}</p>
+                        <div class="userInfos">
+                            <div class="userInfo">
+                                <p>${name}</p>
+                                <p>${bio}</p>
+                            </div>
+                            <div class="userImg"><img src="${image}" width="50" height="50"></div>
+                            <div class="userInfo">
+                                <p>${localisation}</p>
+                                <p>${legend}</p>
+                            </div>
+                        </div>
+                    </div>`;
+            users.appendChild(newUserDiv);
+        }
+
+        function FindData() {
+            const dbref = ref(db);
+
+            get(child(dbref, "/"))
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const data = snapshot.val();
+                        for (const userId in data) {
+                            if (data.hasOwnProperty(userId)) {
+                                const user = data[userId];
+                                createNewUserDiv(userId, user.name, user.bio, user.legend, user.localisation, user.image)
+                            }
+                        }
+                    } else {
+                        alert("No data found");
+                    }
+                })
+                .catch((error) => {
+                    alert(error)
+                })
+
+        }
+
+        FindData();
+    </script>
+</body>
+
+</html>

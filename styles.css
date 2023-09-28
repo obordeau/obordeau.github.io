@@ -1,0 +1,89 @@
+body {
+    text-align: center;
+    margin: 0;
+    height: 100vh;
+    background-color: rgb(243, 243, 243);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+#banner {
+    max-width: 100%;
+    height: auto;
+}
+
+#mainContainer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    height: 100%;
+}
+
+.details {
+    background-color: white;
+    margin: 30px 40px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-size: 25px;
+}
+
+input {
+    width: 120px;
+}
+
+iframe {
+    border: 0;
+}
+
+.user {
+    border-bottom: 0.1rem solid rgb(202, 202, 202);
+    margin: 10px 20px 5px 20px;
+}
+
+.user p {
+    margin: 0;
+}
+
+.userInfos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 8px 0;
+
+}
+
+.userInfo {
+    width: 33%;
+    text-align: left;
+    padding: 0 10px;
+    line-height: 25px;
+}
+
+.userImg {
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userId {
+    text-align: left;
+    background-color: #ffde59;
+    border-radius: 10px;
+    padding: 1px 10px;
+    width: fit-content;
+    font-size: 14px;
+}
